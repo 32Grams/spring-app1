@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 
 public class TestSpring {
     public static void main(String[] args) {
-        try(ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                "ApplicationContext.xml")) {
-
-            Computer computer = context.getBean("computer", Computer.class);
-            System.out.println(computer.toString());
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+                "ApplicationContext.xml");
+        Computer computer = context.getBean("computer", Computer.class);
+        System.out.println(computer.toString());
+        context.close(); 
         }
     }
 }
@@ -29,4 +29,16 @@ public class TestSpring {
 //        System.out.println(music2.getSong());
 //
 //        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+
 //        musicPlayer.playMusic();
+//        Computer computer = context.getBean("computer", Computer.class);
+
+//         try(ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+//                 "ApplicationContext.xml")) {
+
+//             Computer computer = context.getBean("computer", Computer.class);
+//             System.out.println(computer.toString());
+          
+//                   MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+//        musicPlayer.playMusic();
+

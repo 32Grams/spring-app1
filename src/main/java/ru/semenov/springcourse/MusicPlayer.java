@@ -2,6 +2,7 @@ package ru.semenov.springcourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,45 +10,42 @@ import java.util.List;
 
 @Component
 public class MusicPlayer {
-    private final Music rockMusic;
-    private final Music classicalMusic;
-    private final Music jazzMusic;
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music rockMusic,
-                       @Qualifier("classicalMusic") Music classicalMusic,
-                       @Qualifier("jazzMusic") Music jazzMusic) {
-        this.rockMusic = rockMusic;
-        this.classicalMusic = classicalMusic;
-        this.jazzMusic = jazzMusic;
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.volume}")
+    private int volume;
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String playMusic(Genre genre) {
-        switch (genre) {
-            case ROCK:
-                return rockMusic.getSong();
-            case CLASSICAL:
-                return classicalMusic.getSong();
-            case JAZZ:
-                return jazzMusic.getSong();
-        }
-        return null;
+    public String getName() {
+        return name;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    private Music music1;
+    private Music music2;
+
+    public MusicPlayer(@Qualifier("rockMusic") Music music1,
+                       @Qualifier("classicalMusic")Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
+      }
+   public String playMusic() {
+       return "\nPlaying: " + music1.getSong() + "\n" + "Playing: " + music2.getSong();
     }
 }
 
 // УРОК 12
-//public class MusicPlayer {
-//    private RockMusic rockMusic;
-//    private ClassicalMusic classicalMusic;
-//    @Autowired
-//    public MusicPlayer(RockMusic rockMusic, ClassicalMusic classicalMusic) {
-//        this.rockMusic = rockMusic;
-//        this.classicalMusic = classicalMusic;
-//    }
-//
-//    public String playMusic() {
-//        return "\nPlaying: " + rockMusic.getSong() + "\n" + "Playing: " + classicalMusic.getSong();
-//    }
-//}
+
 /*
 public class MusicPlayer {
     private List<Music> listOfMusic = new ArrayList<>();
@@ -93,4 +91,16 @@ public class MusicPlayer {
         this.listOfMusic.add(music);
     }
 }
+
+    public String playMusic(Genre genre) {
+        switch (genre) {
+            case ROCK:
+                return rockMusic.getSong();
+            case CLASSICAL:
+                return classicalMusic.getSong();
+            case JAZZ:
+                return jazzMusic.getSong();
+        }
+        return null;
+    }
 */

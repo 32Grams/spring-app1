@@ -1,5 +1,8 @@
 package ru.semenov.springcourse;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,13 +21,13 @@ public class ClassicalMusic implements Music {
     public String getSong() {
         return songs.get((int) (Math.random() * 3));
     }
+    @PostConstruct
+    public void doMyInit() {
+        System.out.println("Doing my initialisation");
+    }
+    @PreDestroy
+    public void doMyDestroy() {
+        System.out.println("Doing my destruction");
+    }
 }
-    //    public void doMyInit() {
-//        System.out.println("Doing my initialisation");
-//    }
-//
-//    public void doMyDestroy() {
-//        System.out.println("Doing my destruction");
-//    }
-
 
