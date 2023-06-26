@@ -38,27 +38,13 @@ public class MusicPlayer {
                        @Qualifier("classicalMusic")Music music2) {
         this.music1 = music1;
         this.music2 = music2;
-    }
-
-    public String playMusic() {
-        return "\nPlaying: " + music1.getSong() + " and then " + music2.getSong();
+      }
+   public String playMusic() {
+       return "\nPlaying: " + music1.getSong() + "\n" + "Playing: " + music2.getSong();
     }
 }
 
 // УРОК 12
-//public class MusicPlayer {
-//    private RockMusic rockMusic;
-//    private ClassicalMusic classicalMusic;
-//    @Autowired
-//    public MusicPlayer(RockMusic rockMusic, ClassicalMusic classicalMusic) {
-//        this.rockMusic = rockMusic;
-//        this.classicalMusic = classicalMusic;
-//    }
-//
-//    public String playMusic() {
-//        return "\nPlaying: " + rockMusic.getSong() + "\n" + "Playing: " + classicalMusic.getSong();
-//    }
-//}
 
 /*
 public class MusicPlayer {
@@ -105,4 +91,16 @@ public class MusicPlayer {
         this.listOfMusic.add(music);
     }
 }
+
+    public String playMusic(Genre genre) {
+        switch (genre) {
+            case ROCK:
+                return rockMusic.getSong();
+            case CLASSICAL:
+                return classicalMusic.getSong();
+            case JAZZ:
+                return jazzMusic.getSong();
+        }
+        return null;
+    }
 */

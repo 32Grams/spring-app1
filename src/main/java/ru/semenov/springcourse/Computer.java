@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Computer {
     private int id;
-    private MusicPlayer musicPlayer;
+    private  final Genre[] genre = new Genre[]{Genre.CLASSICAL, Genre.ROCK, Genre.JAZZ};
+    private final MusicPlayer musicPlayer;
     @Autowired
     public Computer(MusicPlayer musicPlayer) {
         this.id = 1;
@@ -15,6 +16,6 @@ public class Computer {
 
     @Override
     public String toString() {
-        return "Computer: id = " + id + " " + musicPlayer.playMusic();
+        return "Computer: id = " + id + " " + musicPlayer.playMusic(genre[(int) (Math.random()*3)]);
     }
 }
